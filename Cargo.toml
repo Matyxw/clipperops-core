@@ -1,0 +1,29 @@
+[package]
+name = "clipper_ops_core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Matias Cardozo <tu@email.com>"]
+
+[dependencies]
+# Motor Asíncrono (El corazón del sistema)
+tokio = { version = "1.36", features = ["full"] }
+
+# Servidor Web y Rutas (Para webhooks y fallback)
+axum = "0.7"
+
+# gRPC y Protocol Buffers (La comunicación inmutable)
+tonic = "0.11"
+prost = "0.12"
+
+# Base de Datos (SurrealDB embebido/remoto)
+surrealdb = "1.4"
+
+# Utilidades Core (Event Sourcing)
+uuid = { version = "1.8", features = ["v4", "fast-rng", "serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+
+[build-dependencies]
+# Compilador de archivos .proto a Rust
+tonic-build = "0.11"

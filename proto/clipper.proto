@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package clipper_ops;
+
+// El servicio central
+service TurnoService {
+  rpc AgendarTurno (SolicitudTurno) returns (RespuestaTurno);
+}
+
+// Los datos inmutables
+message SolicitudTurno {
+  string id_barbero = 1;
+  string id_cliente = 2;
+  uint64 inicio_estimado = 3;
+}
+
+message RespuestaTurno {
+  bool exito = 1;
+  string id_evento = 2;
+}
