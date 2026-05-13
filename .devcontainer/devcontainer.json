@@ -1,0 +1,18 @@
+{
+  "name": "ClipperOps Cloud Env",
+  "image": "ghcr.io/xtruder/nix-devcontainer:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide",
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "serayuzgur.2103"
+      ]
+    }
+  },
+  "onCreateCommand": "nix develop --command true"
+}
