@@ -26,7 +26,10 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          };
 
         inherit (pkgs) lib;
 
@@ -38,16 +41,20 @@
           inherit src;
           strictDeps = true;
 
-          buildInputs = [
-            # Add additional build inputs here
-          ]
-          ++ lib.optionals pkgs.stdenv.isDarwin [
-            # Additional darwin specific inputs can be set here
-            pkgs.libiconv
+          nativeBuildInputs = with pkgs; [
+            pkg-config
+            protobuf    # Esto es lo que genera el código gRPC de ClipperOps
           ];
 
-          # Additional environment variables can be set directly
-          # MY_CUSTOM_VAR = "some value";
+          buildInputs = with pkgs; [
+            rustc       # El compilador de Rust
+            cargo       # El gestor de paquetes
+            openssl
+            surrealdb
+          ]
+          ++ lib.optionals pkgs.stdenv.isDarwin [
+            pkgs.libiconv
+          ];
         };
 
         # Build *just* the cargo dependencies, so we can reuse
