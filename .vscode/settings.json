@@ -1,0 +1,9 @@
+{
+  "terminal.integrated.profiles.linux": {
+    "NixShell": {
+      "path": "bash",
+      "args": ["-l", "-c", "nix develop --command bash"]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "NixShell"
+}

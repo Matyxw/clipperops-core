@@ -1,11 +1,23 @@
 {
-  "name": "ClipperOps Cloud Env",
-  "image": "ghcr.io/xtruder/nix-devcontainer:latest",
+  "name": "ClipperOps Core Env",
+  "image": "mcr.microsoft.com/devcontainers/base:jammy",
   "features": {
+    "ghcr.io/devcontainers/features/nix:1": {
+      "extraNixConfig": "experimental-features = nix-command flakes"
+    },
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "customizations": {
     "vscode": {
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "NixShell": {
+            "path": "bash",
+            "args": ["-l", "-c", "nix develop --command bash"]
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "NixShell"
+      },
       "extensions": [
         "jnoortheen.nix-ide",
         "rust-lang.rust-analyzer",
@@ -14,5 +26,5 @@
       ]
     }
   },
-  "onCreateCommand": "nix develop --command true"
+  "remoteUser": "vscode"
 }
