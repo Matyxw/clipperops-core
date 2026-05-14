@@ -5,8 +5,10 @@ edition = "2021"
 authors = ["Matias Cardozo <tu@email.com>"]
 
 [dependencies]
-# Motor Asíncrono (El corazón del sistema)
-tokio = { version = "1.36", features = ["full"] }
+surrealdb = { version = "1.5.6", features = ["kv-mem"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+
 
 # Servidor Web y Rutas (Para webhooks y fallback)
 axum = "0.7"
@@ -15,15 +17,14 @@ axum = "0.7"
 tonic = "0.11"
 prost = "0.12"
 
-# Base de Datos (SurrealDB embebido/remoto)
-surrealdb = "1.4"
-
 # Utilidades Core (Event Sourcing)
 uuid = { version = "1.8", features = ["v4", "fast-rng", "serde"] }
-serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2.0.18"
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
 
 [build-dependencies]
 # Compilador de archivos .proto a Rust
-tonic-build = "0.11"
+tonic-build = "0.11"                                  

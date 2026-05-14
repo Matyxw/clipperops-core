@@ -1,2 +1,5 @@
-/target
 result*
+/target
+Cargo.lock
+**/*.rs.bk
+.env
